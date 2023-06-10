@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+if [ $1 == "l" ]; then
+    # Bat
+    #sed -i "s/Nord/OneHalfLight/g" ~/.config/bat/config
+    # Fcitx5
+    #sed -i "s/nord-dark/nord-light/g" ~/.config/fcitx5/conf/classicui.conf
+    #pkill fcitx5
+    # Wallpaper
+    #nohup betterlockscreen -u ~/Imagens/Wallpaper/wallpaper.jpg >/dev/null 2>&1 &
+    cp ~/Imagens/Wallpaper/wallpaper-light.png ~/Imagens/Wallpaper/wallpaper.png
+    feh --bg-fill ~/Imagens/Wallpaper/wallpaper.png
+    # Qtile
+    sed -i "s/3b4252/fafafa/g" ~/.config/qtile/config.py
+    cp ~/.config/qtile/colors-light.py ~/.config/qtile/colors.py
+    qtile cmd-obj -o cmd -f restart
+    # Polybar
+    #cp ~/.config/polybar/colors-nord-light ~/.config/polybar/colors
+    #cp ~/.config/leftwm/themes/current/configs/colors-nord-light ~/.config/leftwm/themes/current/configs/colors
+    #pkill polybar
+    # Dmenu
+    #sed -i "s/\[SchemeNorm\] \= {\"\#FAFAFA\"\, \"\#2E3440\"/\[SchemeNorm\] \= {\"\#2E3440\"\, \"\#FAFAFA\"/g" ~/.dmenu/config.def.h
+    #sed -i "s/\[SchemeSel\] \= {\"\#FAFAFA\"\, \"\#5E81AC\"/\[SchemeSel\] \= {\"\#3B4252\"\, \"\#88C0D0\"/g" ~/.dmenu/config.def.h    
+    # Alacritty
+    cp ~/.config/qtile/alacritty/alacritty-nord-light.yml ~/.config/alacritty/alacritty.yml
+    # Global theme
+    #sed -i "s/Nord/Orchis-light/g" ~/.config/xsettingsd/xsettingsd.conf
+    #sed -i "s/Nord/Orchis-light/g" ~/.gtkrc-2.0
+    # sed -i "s/Nord/Orchis-light/g" ~/.config/gtk-3.0/settings.ini
+    # pkill -1 xsettingsd
+    # Rofi
+    sed -i "s/dark/light/g" ~/.config/rofi/config.rasi
+    # Nvim
+    # sed -i "s/\=dark/\=light/g" ~/.config/nvim/lua/modules/ui/config.lua
+    # sed -i "s/onedark/onelight/g" ~/.config/nvim/lua/modules/ui/config.lua
+    # Code
+    # sed -i "s/Nord/Atom One Light/g" ~/.config/Code/User/settings.json
+    # Zathura
+    # cp ~/.config/zathura/zathurarc-nord-light ~/.config/zathura/zathurarc
+    # Daemons
+    sh ~/.local/bin/startdaemon
+    # Notify
+    cp -r ~/.config/dunst/dunstrc-nord-light ~/.config/dunst/dunstrc
+    notify-send "Switch to Light Now!" -i ~/Pictures/nord.png -t 3000
+
+
+elif [ $1 == "n" ]; then
+    # Bat
+    # sed -i "s/OneHalfLight/Nord/g" ~/.config/bat/config
+    # Fcitx5
+    # sed -i "s/nord-light/nord-dark/g" ~/.config/fcitx5/conf/classicui.conf
+    # pkill fcitx5
+    # Wallpaper
+    #nohup betterlockscreen -u ~/Pictures/nord/arctic-landscape.png >/dev/null 2>&1 &
+    cp ~/Imagens/Wallpaper/wallpaper-dark.png ~/Imagens/Wallpaper/wallpaper.png
+    feh --bg-fill ~/Imagens/Wallpaper/wallpaper.png
+    # Qtile
+    sed -i "s/fafafa/3b4252/g" ~/.config/qtile/config.py
+    cp ~/.config/qtile/colors-dark.py ~/.config/qtile/colors.py
+    qtile cmd-obj -o cmd -f restart
+    # Polybar
+    # cp ~/.config/polybar/colors-nord-dark ~/.config/polybar/colors
+    # cp ~/.config/leftwm/themes/current/configs/colors-nord-dark ~/.config/leftwm/themes/current/configs/colors
+    # pkill polybar
+    # Dmenu
+    # sed -i "s/\[SchemeNorm\] \= {\"\#2E3440\"\, \"\#FAFAFA\"/\[SchemeNorm\] \= {\"\#FAFAFA\"\, \"\#2E3440\"/g" ~/.dmenu/config.def.h
+    # sed -i "s/\[SchemeSel\] \= {\"\#3B4252\"\, \"\#88C0D0\"/\[SchemeSel\] \= {\"\#FAFAFA\"\, \"\#5E81AC\"/g" ~/.dmenu/config.def.h    
+    # Alacritty
+    cp ~/.config/qtile/alacritty/alacritty-nord-dark.yml ~/.config/alacritty/alacritty.yml
+    # Global theme
+    sed -i "s/Orchis-light/Nord/g" ~/.config/xsettingsd/xsettingsd.conf
+    sed -i 's/Orchis-light/Nord/g' ~/.gtkrc-2.0
+    sed -i "s/Orchis-light/Nord/g" ~/.config/gtk-3.0/settings.ini
+    pkill -1 xsettingsd
+    # Rofi
+    sed -i "s/light/dark/g" ~/.config/rofi/config.rasi
+    # Nvim
+    # sed -i "s/\=light/\=dark/g" ~/.config/nvim/lua/modules/ui/config.lua
+    # sed -i "s/onelight/onedark/g" ~/.config/nvim/lua/modules/ui/config.lua
+    # Code
+    # sed -i "s/Atom One Light/Nord/g" ~/.config/Code/User/settings.json
+     # Zathura
+    # cp ~/.config/zathura/zathurarc-nord-dark ~/.config/zathura/zathurarc
+    # Daemons
+    sh ~/.local/bin/startdaemon
+    # Notify
+    cp ~/.config/dunst/dunstrc-nord-dark ~/.config/dunst/dunstrc
+    notify-send "Switch to Nord Now!" -i ~/Pictures/nord.png -t 3000
+fi

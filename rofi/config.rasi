@@ -1,0 +1,8 @@
+configuration {
+    modi: "window,combi,ssh,drun,run,windowcd,keys";
+	font: "Intel One Mono Font 16";
+	show-icons: true;
+	icon-theme: "Papirus";
+	display-drun: "App";
+}
+@theme "~/.src/qtile-nord/nord/.config/qtile/rofi/nord-dark.rasi"

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ln -sf ~/.config/qtile/bin/startdaemon ~/.local/bin/startdaemon
+ln -sf ~/.config/qtile/bin/switch ~/.local/bin/switch
