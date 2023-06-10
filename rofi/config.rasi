@@ -5,4 +5,4 @@ configuration {
 	icon-theme: "Papirus";
 	display-drun: "App";
 }
-@theme "~/.src/qtile-nord/nord/.config/qtile/rofi/nord-dark.rasi"
+@theme "~/.config/qtile/rofi/nord-dark.rasi"
