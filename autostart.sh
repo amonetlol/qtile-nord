@@ -14,7 +14,8 @@ function run {
 #xrandr --output DVI-D-0 --mode 1280x1024 --pos 1920x210 --rotate normal --output HDMI-0 --off --output DP-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off &
 xrandr -s 1920x1080 &
 vmware-user-suid-wrapper &
-nitrogen --restore &    # wallpaper
+feh ~/.fehbg &
+#nitrogen --restore &    # wallpaper
 #redshift -P -O 3500 &   # night light
 picom --backend glx --config ~/.config/qtile/picom.conf &
 nm-applet &
