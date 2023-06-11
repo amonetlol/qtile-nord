@@ -6,7 +6,7 @@
 **Nord-Dark**
 ![Nord-Dark](/preview/preview-dark.png)
 
-Qtile
+**Qtile on Ubuntu:**
 * python3-virtualenv
 * python3-pip
 * pip install xcffib
@@ -15,9 +15,7 @@ Qtile
 * pip install dbus-next
 * pip install psutil
 
-
-
-Dependências:
+**Dependências:**
 * rofi
 * alacritty
 * picom
@@ -29,7 +27,7 @@ Dependências:
 * pavucontrol
 * pamixer
 
-Fonts:
+**Fonts:**
 * JetBrainsMono Nerd Font
 * Intel One Mono Font
 
