@@ -1,5 +1,11 @@
 # qtile-nord
 
+**Nord-Light**
+![Nord-Light](/preview/preview-light.png)
+
+**Nord-Dark**
+![Nord-Dark](/preview/preview-dark.png)
+
 Qtile
 * python3-virtualenv
 * python3-pip
