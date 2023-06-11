@@ -2,3 +2,8 @@
 
 ln -sf ~/.config/qtile/bin/startdaemon ~/.local/bin/startdaemon
 ln -sf ~/.config/qtile/bin/switch ~/.local/bin/switch
+ln -sf ~/.config/qtile/rofi ~/.config/rofi/
+ln -sf ~/.config/qtile/alacritty/ ~/.config/alacritty/ 
+ln -sf ~/.config/qtile/Wallpaper ~/Imagens/Wallpaper/ 
+ln -s ~/.config/qtile/fonts ~/.local/share/fonts
+fc-cache -fv
