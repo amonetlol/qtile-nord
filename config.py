@@ -286,7 +286,7 @@ keys = [
     Key(
         [mod],
         "n",
-        lazy.layout.normalize(),
+        lazy.layout.reset(),
         desc="Normalize window size ratios",
     ),
     Key(
@@ -400,20 +400,12 @@ workspaces = [
         "key": "1",
         "label": "",
         "layout": "monadtall",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [""],
     },
     {
         "name": "2",
         "key": "2",
         "label": "",
         "layout": "monadtall",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [],
     },
     {
         "name": "3",
@@ -425,67 +417,42 @@ workspaces = [
             Match(wm_class="google-chrome"),
             Match(wm_class="firefox"),
         ],
-        "spawn": [""],
     },
     {
         "name": "4",
         "key": "4",
         "label": "",
         "layout": "max",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [],
     },
     {
         "name": "5",
         "key": "5",
         "label": "",
         "layout": "bsp",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [],
     },
     {
         "name": "6",
         "key": "6",
         "label": "",
         "layout": "max",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [],
     },
     {
         "name": "7",
         "key": "7",
         "label": "",
         "layout": "max",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [""],
     },
     {
         "name": "8",
         "key": "8",
         "label": "",
         "layout": "max",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [""],
     },
     {
         "name": "9",
         "key": "9",
         "label": "",
         "layout": "floating",
-        "matches": [
-            Match(wm_class=""),
-        ],
-        "spawn": [""],
     },
 ]
 
@@ -497,7 +464,7 @@ for workspace in workspaces:
             workspace["name"],
             matches=matches,
             layout=workspace["layout"],
-            spawn=workspace["spawn"],
+            #spawn=workspace["spawn"],
             label=workspace["label"],
         )
     )

@@ -21,6 +21,7 @@ Dependências:
 * flameshot
 * dunst
 * pavucontrol
+* pamixer
 
 Fonts:
 * JetBrainsMono Nerd Font
