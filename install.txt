@@ -1,0 +1,37 @@
+# dependencies
+python3-virtualenv-clone python3-dbus python3-pip 
+
+# TIPS
+# command to disable env
+deactivate
+
+
+# Installation guide
+
+mkdir ~/qtile
+python3 -m virtualenv ~/qtile
+source ~/qtile/bin/activate
+
+
+pip install git+https://github.com/qtile/qtile@master
+pip install dbus-next
+pip install pyxdg
+pip install psutil
+
+#######Fix:
+sudo virtualenv-clone ~/qtile /opt/qtile
+sudo chown -R <username> /opt/qtile
+mkdir ~/.local/bin
+ln -s /opt/qtile/bin/qtile ~/.local/bin/qtile
+
+vim .bashrc
+export PATH="$HOME/.local/bin:$PATH"
+
+/usr/share/xsessions/qtile.desktop
+[Desktop Entry]
+Name=Qtile
+Comment=Qtile Session
+Exec=/opt/qtile/bin/qtile start
+Type=Application
+X-GDM-SessionRegisters=true
+Keywords=wm;tiling
