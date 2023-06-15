@@ -34,6 +34,8 @@ from custom.zoomy import Zoomy as CustomZoomy
 mod = "mod4"
 mod1 = "mod1"
 terminal = "alacritty"
+browser = "firefox"
+fileManager = "thunar"
 
 
 @hook.subscribe.client_new
@@ -50,121 +52,8 @@ def autostart():
     subprocess.call([home])
 
 
-# Resize functions for bsp layout
-def resize(qtile, direction):
-    layout = qtile.current_layout
-    child = layout.current
-    parent = child.parent
 
-    while parent:
-        if child in parent.children:
-            layout_all = False
-
-            if (direction == "left" and parent.split_horizontal) or (
-                direction == "up" and not parent.split_horizontal
-            ):
-                parent.split_ratio = max(5, parent.split_ratio - layout.grow_amount)
-                layout_all = True
-            elif (direction == "right" and parent.split_horizontal) or (
-                direction == "down" and not parent.split_horizontal
-            ):
-                parent.split_ratio = min(95, parent.split_ratio + layout.grow_amount)
-                layout_all = True
-
-            if layout_all:
-                layout.group.layout_all()
-                break
-
-        child = parent
-        parent = child.parent
-
-
-@lazy.function
-def resize_left(qtile):
-    resize(qtile, "left")
-
-
-@lazy.function
-def resize_right(qtile):
-    resize(qtile, "right")
-
-
-@lazy.function
-def resize_up(qtile):
-    resize(qtile, "up")
-
-
-@lazy.function
-def resize_down(qtile):
-    resize(qtile, "down")
-
-
-keys = [
-
-    Key(
-        [mod],
-        "r",
-        lazy.spawn("rofi -show drun -show-icons"),
-    ),
-    Key(
-        [mod],
-        "w",
-        lazy.spawn("rofi -show window"),
-    ),
-    Key(
-        [mod],
-        "Return",
-        lazy.spawn(terminal),
-        desc="Launch terminal",
-    ),
-    Key(
-        [mod],
-        "Tab",
-        lazy.next_layout(),
-        desc="Toggle through layouts",
-    ),
-    Key(
-        [mod, "shift"],
-        "Tab",
-        lazy.prev_layout(),
-        desc="Toggle through layouts",
-    ),
-    Key(
-        [mod],
-        "q",
-        lazy.window.kill(),
-        desc="Kill focused window",
-    ),
-    Key(
-        [mod, "shift"],
-        "q",
-        lazy.spawn("xkill"),
-        desc="Force kill window",
-    ),
-    Key(
-        [mod, "shift"],
-        "r",
-        lazy.restart(),
-        desc="Restart Qtile",
-    ),
-    Key(
-        [mod],
-        "x",
-        lazy.shutdown(),
-        desc="Shutdown Qtile",
-    ),
-    Key(
-        [mod],
-        "b",
-        lazy.spawn("firefox"),
-        desc="Launches firefox",
-    ),
-    Key(
-        [mod],
-        "e",
-        lazy.spawn("thunar"),
-        desc="Launches Thunar",
-    ),
+keys = [ 
     Key(
         [mod, "control"],
         "l",
@@ -179,157 +68,58 @@ keys = [
     ),
  
     # Window controls
-    Key(
-        [mod],
-        "j",
-        lazy.layout.down(),
-        desc="Move focus down in current stack pane",
-    ),
-    Key(
-        [mod],
-        "k",
-        lazy.layout.up(),
-        desc="Move focus up in current stack pane",
-    ),
-    Key(
-        [mod],
-        "h",
-        lazy.layout.left(),
-        lazy.layout.next(),
-        desc="Move focus left in current stack pane",
-    ),
-    Key(
-        [mod],
-        "l",
-        lazy.layout.right(),
-        lazy.layout.previous(),
-        desc="Move focus right in current stack pane",
-    ),
-    Key(
-        [mod, "shift"],
-        "j",
-        lazy.layout.shuffle_down(),
-        desc="Move windows down in current stack",
-    ),
-    Key(
-        [mod, "shift"],
-        "k",
-        lazy.layout.shuffle_up(),
-        desc="Move windows up in current stack",
-    ),
-    Key(
-        [mod, "shift"],
-        "h",
-        lazy.layout.shuffle_left(),
-        lazy.layout.swap_left(),
-        lazy.layout.client_to_previous(),
-        desc="Move windows left in current stack",
-    ),
-    Key(
-        [mod, "shift"],
-        "l",
-        lazy.layout.shuffle_right(),
-        lazy.layout.swap_right(),
-        lazy.layout.client_to_next(),
-        desc="Move windows right in the current stack",
-    ),
-    ### BSP Keybinds
-    Key(
-        [mod, mod1],
-        "j",
-        lazy.layout.flip_down(),
-        desc="Flip layout down",
-    ),
-    Key(
-        [mod, mod1],
-        "k",
-        lazy.layout.flip_up(),
-        desc="Flip layout up",
-    ),
-    Key(
-        [mod, mod1],
-        "h",
-        lazy.layout.flip_left(),
-        desc="Flip layout left",
-    ),
-    Key(
-        [mod, mod1],
-        "l",
-        lazy.layout.flip_right(),
-        desc="Flip layout right",
-    ),    
-    Key(
-        [mod],
-        "comma",
-        resize_left,
-        desc="Resize window left",
-    ), # Virgula ","
-    Key(
-        [mod],
-        "period",
-        resize_right,
-        desc="Resize window Right",
-    ), # Ponto "."
-    Key(
-        [mod],
-        "semicolon",
-        resize_up,
-        desc="Resize windows upward",
-    ), # Ponto e virgula ";"
-    Key(
-        [mod],
-        "apostrophe",
-        resize_down,
-        desc="Resize windows downward",
-    ), # Apostrofe "'"
-    ### END BSP Keybinds
-    Key(
-        [mod],
-        "n",
-        lazy.layout.reset(),
-        desc="Normalize window size ratios",
-    ),
-    Key(
-        [mod],
-        "m",
-        lazy.layout.maximize(),
-        desc="Toggle window between minimum and maximum sizes",
-    ),
-    Key(
-        [mod, "control"], "k", lazy.layout.section_up()  # Move up a section in treetab
-    ),
-    Key(
-        [mod, "control"],
-        "j",
-        lazy.layout.section_down(),  # Move down a section in treetab
-    ),
-    Key(
-        [mod],
-        "f",
-        lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen",
-    ),
-    Key(
-        [mod, "shift"],
-        "f",
-        lazy.window.toggle_floating(),
-        desc="Toggle floating on focused window",
-    ),
-    # Stack controls
-    # Key(
-    #     [mod],
-    #     "f",
-    #     lazy.layout.rotate(),
-    #     lazy.layout.flip(),
-    #     desc="Switch which side main pane occupies {MonadTall}",
-    # ),
-    # Key(
-    #     [mod],
-    #     "s",
-    #     lazy.layout.toggle_split(),
-    #     desc="Toggle between split and unsplit sides of stack",
-    # ),
-    # Shot Screen
+    # Switch between windows
+    # Key([mod], "h", lazy.layout.left()),
+    # Key([mod], "l", lazy.layout.right()),
+    # Key([mod], "j", lazy.layout.down()),
+    # Key([mod], "k", lazy.layout.up()),
+    # Key([mod], "space", lazy.layout.next()),
+
+    # Controls for Max layout ("a" and "d") to change focus windows
+    Key([mod], "a", lazy.layout.up().when(layout="max")),
+    Key([mod], "d", lazy.layout.down().when(layout="max")),
+
+    # Move windows between left/right columns or move up/down in current stack.
+    # Moving out of range in Columns layout will create new column.
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+
+    #### Grow windows. ####
+    # MonadTall
+    Key([mod], "Up", lazy.layout.grow()),
+    Key([mod], "Down", lazy.layout.shrink()),
+    # reset position
+    Key([mod], "n", lazy.layout.reset()),
+    
+    # Columns
+    # Key([mod, "control"], "h", lazy.layout.grow_left()),
+    # Key([mod, "control"], "l", lazy.layout.grow_right()),
+    # Key([mod, "control"], "j", lazy.layout.grow_down()),
+    # Key([mod, "control"], "k", lazy.layout.grow_up()),
+    # # reset position
+    # Key([mod, "control"], "n", lazy.layout.normalize()),
+    
+    Key([mod], "m", lazy.layout.maximize(), desc='toggle window between minimum and maximum sizes'),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='toggle floating'),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+
+    # Toggle between different layouts as defined below
+    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod], "q", lazy.window.kill()),
+    Key([mod, "control"], "r", lazy.reload_config()),
+    Key([mod, "control"], "q", lazy.shutdown()),
+
+    # Apps
+    Key([mod], "Return", lazy.spawn(terminal)),
+    Key([mod], "e", lazy.spawn(fileManager)),
+    # Run "rofi-theme-selector" in terminal to select a theme
+    Key([mod], "r", lazy.spawn("rofi -show drun -show-icons")),
+    Key([mod], "b", lazy.spawn(browser)),
+    Key([mod], "g", lazy.spawn("pavucontrol")),
+
+    # Screenshot
     Key(
         [mod, "shift"],
         "s",
@@ -422,31 +212,31 @@ workspaces = [
         "name": "4",
         "key": "4",
         "label": "",
-        "layout": "max",
+        "layout": "monadtall",
     },
     {
         "name": "5",
         "key": "5",
         "label": "",
-        "layout": "bsp",
+        "layout": "monadtall",
     },
     {
         "name": "6",
         "key": "6",
         "label": "",
-        "layout": "max",
+        "layout": "monadtall",
     },
     {
         "name": "7",
         "key": "7",
         "label": "",
-        "layout": "max",
+        "layout": "monadtall",
     },
     {
         "name": "8",
         "key": "8",
         "label": "",
-        "layout": "max",
+        "layout": "monadtall",
     },
     {
         "name": "9",
@@ -534,20 +324,8 @@ layout_audio = {
 
 layouts = [
     # layout.Bsp(**layout_theme, fair=False),
-    CustomBsp(**layout_theme, fair=False),
+    #CustomBsp(**layout_theme, fair=False),
     layout.Max(**layout_theme),
-    layout.TreeTab(
-        **layout_theme,
-        active_bg=colors[1],
-        active_fg=colors[0],
-        bg_color=colors[1],
-        fontsize=16,
-        inactive_bg=colors[1],
-        inactive_fg=colors[0],
-        sections=["", "", ""],
-        section_fontsize=18,
-        section_fg=colors[0],
-    ),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
     layout.Floating(
