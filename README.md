@@ -9,9 +9,10 @@
 **Qtile on Ubuntu:**
 * python3-virtualenv
 * python3-pip
-* pip install xcffib
-* pip install cairocff
-* pip install qtile
+* pip install xcffib **DEPRECATED**
+* pip install cairocff **DEPRECATED**
+* pip install qtile **DEPRECATED**
+* pip install git+https://github.com/qtile/qtile **CURRENT**
 * pip install dbus-next
 * pip install psutil
 
