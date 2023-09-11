@@ -12,7 +12,7 @@
 * pip install xcffib **DEPRECATED**
 * pip install cairocff **DEPRECATED**
 * pip install qtile **DEPRECATED**
-* pip install git+https://github.com/qtile/qtile **CURRENT**
+* pip install git+https://github.com/qtile/qtile.git **CURRENT**
 * pip install dbus-next
 * pip install psutil
 
